@@ -33,7 +33,7 @@ Perplexity Simulation follows a client-server architecture:
 
 - Node.js 18+
 - Python 3.10+
-- OpenAI API key
+- GROQ API key
 - Tavily API key
 
 ### Installation
@@ -62,11 +62,68 @@ cd server
    TAVILY_API_KEY=your_tavily_api_key
 ```
 
+4- **Set up the client**
+
+```bash
+cd client
+npm install next react react-dom
+```
+
 ### Running the Application
 
 1- **Start the server**
 
 ```bash
-   cd server
-   uvicorn app:app --reload
+cd server
+uvicorn app:app --reload
 ```
+
+2- **Start the client**
+
+```bash
+# In The Root Dir Run:
+npx create-next-app@latest client --typescript --eslint --tailwind
+
+# or Simply Clone my Repo and run:
+cd client
+npm install
+
+# Then Run To start the client:
+npm run dev
+```
+
+3- **Open your browser and navigate to http://localhost:3000**
+
+## 🔍 How It Works
+
+1- **User sends a message** through the chat interface
+2- **Server processes the message** using llama-3.3-70b-versatile
+3- **AI decides** whether to use search or respond directly
+4- **If search is needed**:
+
+- Search query is sent to Tavily API
+- Results are processed and provided back to the AI
+- AI uses this information to formulate a response
+
+5- **Response is streamed** back to the client in real-time
+6- **Search stages are displayed** to the user (searching, reading, writing)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the Apache License Version 2.0 - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by the UI and functionality of [Perplexity.ai](https://www.perplexity.ai/)
+- Built with [Next.js](https://nextjs.org/), [React](https://reactjs.org/), [FastAPI](https://fastapi.tiangolo.com/), and [LangGraph](https://github.com/langchain-ai/langgraph)
+- Powered by [Groq](https://groq.com/) and [Tavily Search API](https://tavily.com/)
